@@ -6,7 +6,7 @@
 <title>Ստելլայի 9-րդ Ծնունդը ✨</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&family=Noto+Sans+Armenian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&family=Noto+Sans+Armenian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --pink:#ff7ab6;
@@ -73,12 +73,100 @@
     50%{box-shadow:0 6px 30px rgba(255,122,182,.7);}
   }
 
-  /* ===== HERO ===== */
+  /* ===== HERO with Princess ===== */
   .hero{
     position:relative;min-height:100vh;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     padding:60px 20px 40px;z-index:2;text-align:center;
   }
+  
+  /* Princess Container */
+  .princess-container{
+    position:relative;
+    width:280px;
+    height:320px;
+    margin:0 auto 20px;
+  }
+  
+  .princess-svg{
+    width:100%;
+    height:100%;
+    filter:drop-shadow(0 10px 30px rgba(155,126,216,.3));
+  }
+  
+  /* Crown Animation */
+  .crown{
+    animation:crownFloat 3s ease-in-out infinite, crownGlow 2s ease-in-out infinite;
+    transform-origin:center bottom;
+  }
+  @keyframes crownFloat{
+    0%,100%{transform:translateY(0) rotate(-2deg);}
+    50%{transform:translateY(-8px) rotate(2deg);}
+  }
+  @keyframes crownGlow{
+    0%,100%{filter:drop-shadow(0 0 5px var(--gold));}
+    50%{filter:drop-shadow(0 0 20px var(--gold-light));}
+  }
+  
+  /* Hair Animation */
+  .hair{
+    animation:hairWave 4s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  @keyframes hairWave{
+    0%,100%{transform:rotate(-1deg);}
+    50%{transform:rotate(1deg);}
+  }
+  
+  /* Dress Animation */
+  .dress{
+    animation:dressSway 3s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  @keyframes dressSway{
+    0%,100%{transform:rotate(-1deg);}
+    50%{transform:rotate(1deg);}
+  }
+  
+  /* Sparkles around princess */
+  .princess-sparkle{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:var(--gold);
+    border-radius:50%;
+    animation:sparkleFloat 2s ease-in-out infinite;
+  }
+  .ps1{top:20px;left:10px;animation-delay:0s;}
+  .ps2{top:40px;right:15px;animation-delay:0.5s;background:var(--pink);}
+  .ps3{bottom:80px;left:0;animation-delay:1s;background:var(--lavender);}
+  .ps4{bottom:100px;right:10px;animation-delay:1.5s;}
+  @keyframes sparkleFloat{
+    0%,100%{opacity:0;transform:scale(0);}
+    50%{opacity:1;transform:scale(1);}
+  }
+  
+  /* Invitation Text Animation */
+  .invite-text{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(24px,4vw,36px);
+    color:var(--deep-purple);
+    margin:20px 0;
+    animation:textWave 2s ease-in-out infinite;
+    opacity:0;
+    transform:translateY(20px);
+  }
+  .invite-text.visible{
+    animation:textAppear 1s ease-out forwards, textWave 2s ease-in-out infinite 1s;
+  }
+  @keyframes textAppear{
+    to{opacity:1;transform:translateY(0);}
+  }
+  @keyframes textWave{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-5px);}
+  }
+
   .ribbon{
     display:inline-flex;align-items:center;gap:8px;
     padding:8px 20px;border-radius:999px;
@@ -434,6 +522,7 @@
     .topbar{top:12px;right:12px;}
     .icon-btn{width:40px;height:40px;font-size:18px;}
     .map-container iframe{height:280px;}
+    .princess-container{width:220px;height:260px;}
   }
 </style>
 </head>
@@ -447,35 +536,132 @@
 </div>
 <canvas id="sparkleCanvas"></canvas>
 
-<!-- Audio Element -->
-<audio id="birthdayMusic" loop>
-  <source src="data:audio/mp3;base64,//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq" type="audio/mpeg">
-</audio>
-
 <div class="topbar">
-  <button class="icon-btn" id="musicBtn" title="Միացնել երաժշտությունը">🎵</button>
-  <button class="icon-btn" id="confettiBtn" title="Տոնել">🎉</button>
+  <button class="icon-btn" id="musicBtn" title="րաժշտություն">🎵</button>
+  <button class="icon-btn" id="confettiBtn" title="Տոնել"></button>
 </div>
 
-<!-- HERO -->
+<!-- HERO with Animated Princess -->
 <section class="hero">
   <div class="balloon b1"></div>
   <div class="balloon b2"></div>
   <div class="balloon b3"></div>
   <div class="balloon b4"></div>
 
-  <span class="ribbon">✦ Դուք Հրավիրված Եք ✦</span>
-  <p class="hero-sub">Հրաշալի տոնակատարության</p>
+  <!-- Animated Princess SVG -->
+  <div class="princess-container">
+    <svg class="princess-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+      <!-- Hair Back -->
+      <ellipse class="hair" cx="100" cy="100" rx="55" ry="65" fill="#8B4513" opacity="0.9"/>
+      
+      <!-- Dress -->
+      <path class="dress" d="M 60 160 Q 100 155 140 160 L 155 270 Q 100 280 45 270 Z" 
+            fill="url(#dressGradient)" stroke="#ff7ab6" stroke-width="2"/>
+      <defs>
+        <linearGradient id="dressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ffd1e3;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#c8b6ff;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#a8d8ff;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      
+      <!-- Dress Details -->
+      <path d="M 70 170 Q 100 190 130 170" fill="none" stroke="#fff" stroke-width="2" opacity="0.6"/>
+      <circle cx="85" cy="200" r="4" fill="#d4af37"/>
+      <circle cx="100" cy="215" r="4" fill="#d4af37"/>
+      <circle cx="115" cy="200" r="4" fill="#d4af37"/>
+      
+      <!-- Body -->
+      <ellipse cx="100" cy="150" rx="25" ry="30" fill="#FFE4C4"/>
+      
+      <!-- Neck -->
+      <rect x="92" y="135" width="16" height="20" fill="#FFE4C4"/>
+      
+      <!-- Head -->
+      <ellipse cx="100" cy="110" rx="32" ry="38" fill="#FFE4C4"/>
+      
+      <!-- Hair Front -->
+      <path d="M 68 95 Q 70 70 100 68 Q 130 70 132 95 Q 135 110 130 120 Q 100 115 70 120 Q 65 110 68 95" 
+            fill="#8B4513"/>
+      
+      <!-- Crown -->
+      <g class="crown">
+        <path d="M 75 75 L 80 55 L 90 70 L 100 50 L 110 70 L 120 55 L 125 75 Z" 
+              fill="#d4af37" stroke="#f5d97a" stroke-width="2"/>
+        <circle cx="80" cy="60" r="3" fill="#ff7ab6"/>
+        <circle cx="100" cy="55" r="4" fill="#c8b6ff"/>
+        <circle cx="120" cy="60" r="3" fill="#a8d8ff"/>
+      </g>
+      
+      <!-- Face -->
+      <!-- Eyes -->
+      <ellipse cx="88" cy="105" rx="5" ry="6" fill="#fff"/>
+      <ellipse cx="112" cy="105" rx="5" ry="6" fill="#fff"/>
+      <circle cx="89" cy="106" r="3" fill="#4a3728"/>
+      <circle cx="113" cy="106" r="3" fill="#4a3728"/>
+      <circle cx="90" cy="105" r="1" fill="#fff"/>
+      <circle cx="114" cy="105" r="1" fill="#fff"/>
+      
+      <!-- Eyelashes -->
+      <path d="M 83 100 Q 81 97 80 95" stroke="#4a3728" stroke-width="1" fill="none"/>
+      <path d="M 84 99 Q 83 95 83 93" stroke="#4a3728" stroke-width="1" fill="none"/>
+      <path d="M 117 100 Q 119 97 120 95" stroke="#4a3728" stroke-width="1" fill="none"/>
+      <path d="M 116 99 Q 117 95 117 93" stroke="#4a3728" stroke-width="1" fill="none"/>
+      
+      <!-- Blush -->
+      <ellipse cx="80" cy="115" rx="6" ry="4" fill="#ffb6c1" opacity="0.5"/>
+      <ellipse cx="120" cy="115" rx="6" ry="4" fill="#ffb6c1" opacity="0.5"/>
+      
+      <!-- Smile -->
+      <path d="M 92 122 Q 100 128 108 122" stroke="#d4789a" stroke-width="2" fill="none" stroke-linecap="round"/>
+      
+      <!-- Arms -->
+      <path d="M 75 155 Q 60 170 65 185" stroke="#FFE4C4" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <path d="M 125 155 Q 140 170 135 185" stroke="#FFE4C4" stroke-width="12" fill="none" stroke-linecap="round"/>
+      
+      <!-- Hands holding invitation -->
+      <ellipse cx="65" cy="188" rx="8" ry="6" fill="#FFE4C4"/>
+      <ellipse cx="135" cy="188" rx="8" ry="6" fill="#FFE4C4"/>
+      
+      <!-- Sparkles around -->
+      <circle cx="50" cy="80" r="2" fill="#d4af37" opacity="0.8">
+        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="150" cy="100" r="2" fill="#ff7ab6" opacity="0.8">
+        <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="45" cy="140" r="2" fill="#c8b6ff" opacity="0.8">
+        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="155" cy="160" r="2" fill="#a8d8ff" opacity="0.8">
+        <animate attributeName="opacity" values="0;1;0" dur="2.2s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    
+    <!-- Additional sparkles -->
+    <div class="princess-sparkle ps1"></div>
+    <div class="princess-sparkle ps2"></div>
+    <div class="princess-sparkle ps3"></div>
+    <div class="princess-sparkle ps4"></div>
+  </div>
+
+  <!-- Animated Invitation Text -->
+  <div class="invite-text" id="inviteText">
+    🎀 Դուք հրավիրված եք 🎀
+  </div>
+
+  <span class="ribbon">✦ Սիրով Հրավիրում ենք ✦</span>
+  <p class="hero-sub">Միացեք մեզ տոնելու մեր փոքրիկ արքայադստեր</p>
   <h1 class="hero-name">Ստելլայի</h1>
   <div class="turns">
-    <span>դառնում է</span>
+    <span>9-րդ նունդը</span>
     <div class="age-badge">9</div>
   </div>
   <p class="hero-tagline">
-    Եկ միասին տոնենք Ստելլայի 9 ամյակը և նրա համար ստեղծենք ևս մեկ հիշողություն, որին նա ժպիտով կվերադառնա տարիներ անց ✨
+    Հրաշալի երեկո՝ ի ուրախությամբ, ծիծաղով և անմոռանալի պահերով ✨
   </p>
 
-  <div class="scroll-hint">ԻՋՆԵԼ ՆՐՔԵՎ</div>
+  <div class="scroll-hint">ՋՆԵԼ ԵՐՔԵ</div>
 </section>
 
 <!-- COUNTDOWN -->
@@ -488,7 +674,7 @@
     </div>
     <div class="countdown-wrap" id="countdown">
       <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-label">Օր</div></div>
-      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-label">Ժամ</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-label">ամ</div></div>
       <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-label">Րոպե</div></div>
       <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-label">Վայրկյան</div></div>
     </div>
@@ -505,7 +691,7 @@
     </div>
     <div class="details-grid">
       <div class="detail-card">
-        <div class="detail-icon"></div>
+        <div class="detail-icon">📅</div>
         <h3>Ամսաթիվ</h3>
         <p>Սեպտեմբեր</p>
         <p class="big">21</p>
@@ -513,31 +699,36 @@
       <div class="detail-card">
         <div class="detail-icon">🕑</div>
         <h3>Ժամ</h3>
-        <p> Սկիզբ</p>
+        <p>Տոնակատարությունը սկսվում է</p>
         <p class="big">14:00</p>
       </div>
       <div class="detail-card">
         <div class="detail-icon">🏛️</div>
         <h3>Վայր</h3>
-        <p class="big">Հին Փարվանա Ռեստորան</p>
+        <p class="big">Հին Փարվանա</p>
         <p>Գեղեցիկ միջավայր գեղեցիկ օրվա համար</p>
       </div>
       <div class="detail-card">
         <div class="detail-icon">📍</div>
-           </div>
+        <h3>Հասցե</h3>
+        <p class="big">Աբովյան Քաղաք</p>
+        <p>Հայաստան</p>
+      </div>
+    </div>
 
     <!-- MAP -->
     <div class="map-container">
       <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3040.1234567890123!2d44.51512345678901!3d40.17890123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440cd123456789%3A0x123456789abcdef!2sHin%20Parvana%20Restaurant!5e0!3m2!1sen!2sam!4v1234567890123!5m2!1sen!2sam"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.8765432109876!2d44.54567890123456!3d40.26789012345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4044ab1234567890%3A0xabcdef1234567890!2sHin%20Parvana%20Restaurant!5e0!3m2!1sen!2sam!4v1234567890123!5m2!1sen!2sam"
         allowfullscreen="" 
         loading="lazy" 
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
       <div class="map-info">
-        <strong>Հին Պարվանա Ռեստորան</strong><br>
-        <a href="https://www.google.com/maps/place/%D5%80%D5%AB%D5%B6+%D5%93%D5%A1%D6%80%D5%BE%D5%A1%D5%B6%D5%A1/@40.2817355,44.6448743,17z/data=!3m1!4b1!4m6!3m5!1s0x406aa0306b9767ad:0x7314e2fac618d4b9!8m2!3d40.2817355!4d44.6448743!16s%2Fg%2F11hd9qr93q?entry=ttu&g_ep=EgoyMDI2MDkxNC4wIKXMDSoASAFQAw%3D%3D
-          Բացել Google Maps-ում →
+        <strong>Հին Փարվանա եստորան</strong><br>
+        Աբովյան Քաղաք, Կոտայքի Մարզ, Հայաստան<br>
+        <a href="https://www.google.com/maps/search/Hin+Parvana+Restaurant+Abovyan" target="_blank">
+          ացել Google Maps-ում →
         </a>
       </div>
     </div>
@@ -548,7 +739,7 @@
 <section class="cake-section reveal">
   <div class="container">
     <div class="section-title">
-      <span class="eyebrow">Ցանկություն Պահիր</span>
+      <span class="eyebrow">Ցանկություն Մրմնջա</span>
       <h2>Փչիր Մոմերը</h2>
       <div class="divider"></div>
     </div>
@@ -571,22 +762,36 @@
         <div class="plate"></div>
       </div>
     </div>
-    <p class="cake-msg">Սեղմիր կոճակը և ցանկություն պահիր✨</p>
+    <p class="cake-msg">եղմիր կոճակը և ցանկություն արա ✨</p>
     <button class="blow-btn" id="blowBtn">🌬️ Փչիր Մոմերը</button>
   </div>
 </section>
-   
-    </div
+
+<!-- RSVP -->
+<section class="reveal">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">Միանա՞լու Եք եզ</span>
+      <h2>Հաստատեք Ձեր Մասնակցությունը</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="rsvp-card">
+      <h3>Տեղեկացրեք մեզ, որ գալու եք</h3>
       <p>Ձեր ներկայությունը լավագույն նվերն է 💖</p>
+      <input type="text" class="rsvp-input" id="rsvpName" placeholder="եր անունը..." />
+      <input type="text" class="rsvp-input" id="rsvpGuests" placeholder="Հյուրերի քանակը..." />
+      <button class="rsvp-btn" id="rsvpBtn">✨ Ուղարկել </button>
+      <div class="rsvp-thanks" id="rsvpThanks">
+        💌 Շնորհակալություն։ Ստելլան անհամբերությամբ սպասում է Ձեզ հետ տոնելու։ 💌
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>Սիրով,</p>
+  <p>Սիրով և փայլատակումներով,</p>
   <div class="sig">Ստելլայի Ընտանիք</div>
-  <p style="margin-top:10px;font-size:13px;opacity:.7;">Սեպտեմբեր 21 · 14:00 · Հին Փարվանա Ռեստորան · Աբովյան, Երևան</p>
+  <p style="margin-top:10px;font-size:13px;opacity:.7;">եպտեմբեր 21 · 14:00 · Հին Փարվանա Ռեստորան · Աբովյան</p>
 </footer>
 
 <script>
@@ -653,6 +858,11 @@ const io = new IntersectionObserver(entries=>{
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+/* ===== Show invite text animation ===== */
+setTimeout(()=>{
+  document.getElementById('inviteText').classList.add('visible');
+},500);
+
 /* ===== Confetti ===== */
 function launchConfetti(count=80){
   for(let i=0;i<count;i++){
@@ -673,44 +883,24 @@ function launchConfetti(count=80){
 }
 document.getElementById('confettiBtn').onclick = ()=>launchConfetti(120);
 
-/* ===== Music with Web Audio API ===== */
+/* ===== Music with Web Audio API - Auto-play on first interaction ===== */
 let musicOn = false;
 let audioContext = null;
-let oscillator = null;
-let gainNode = null;
 let isPlaying = false;
+let musicStarted = false;
 
 function playBirthdayMelody(){
   if(!audioContext){
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
   }
   
-  // Simple birthday melody notes (frequencies in Hz)
   const notes = [
-    {f:261.63, d:200}, // C4
-    {f:261.63, d:200}, // C4
-    {f:293.66, d:400}, // D4
-    {f:261.63, d:400}, // C4
-    {f:349.23, d:400}, // F4
-    {f:329.63, d:800}, // E4
-    {f:261.63, d:200},
-    {f:261.63, d:200},
-    {f:293.66, d:400},
-    {f:261.63, d:400},
-    {f:392.00, d:400}, // G4
-    {f:349.23, d:800}, // F4
-    {f:261.63, d:200},
-    {f:261.63, d:200},
-    {f:523.25, d:400}, // C5
-    {f:440.00, d:400}, // A4
-    {f:349.23, d:400}, // F4
-    {f:329.63, d:400}, // E4
-    {f:293.66, d:400}, // D4
-    {f:466.16, d:300}, // A#4
-    {f:466.16, d:300},
-    {f:440.00, d:400},
-    {f:349.23, d:400},
-    {f:392.00, d:400},
+    {f:261.63, d:200}, {f:261.63, d:200}, {f:293.66, d:400}, {f:261.63, d:400},
+    {f:349.23, d:400}, {f:329.63, d:800}, {f:261.63, d:200}, {f:261.63, d:200},
+    {f:293.66, d:400}, {f:261.63, d:400}, {f:392.00, d:400}, {f:349.23, d:800},
+    {f:261.63, d:200}, {f:261.63, d:200}, {f:523.25, d:400}, {f:440.00, d:400},
+    {f:349.23, d:400}, {f:329.63, d:400}, {f:293.66, d:400}, {f:466.16, d:300},
+    {f:466.16, d:300}, {f:440.00, d:400}, {f:349.23, d:400}, {f:392.00, d:400},
     {f:349.23, d:800}
   ];
   
@@ -730,7 +920,44 @@ function playBirthdayMelody(){
   });
 }
 
+function startMusic(){
+  if(musicStarted) return;
+  musicStarted = true;
+  musicOn = true;
+  
+  const btn = document.getElementById('musicBtn');
+  btn.classList.add('playing');
+  btn.textContent = '🔊';
+  btn.title = 'Անջատել երաշտությունը';
+  
+  playBirthdayMelody();
+  window.musicInterval = setInterval(playBirthdayMelody, 8000);
+}
+
+// Try to autoplay on first user interaction anywhere
+document.addEventListener('click', function firstInteraction(){
+  if(!musicStarted){
+    startMusic();
+  }
+  document.removeEventListener('click', firstInteraction);
+}, {once:false});
+
+// Also try on touch for mobile
+document.addEventListener('touchstart', function firstTouch(){
+  if(!musicStarted){
+    startMusic();
+  }
+  document.removeEventListener('touchstart', firstTouch);
+}, {once:false});
+
+// Manual toggle
 document.getElementById('musicBtn').onclick = (e)=>{
+  e.stopPropagation();
+  if(!audioContext){
+    startMusic();
+    return;
+  }
+  
   musicOn = !musicOn;
   const btn = e.currentTarget;
   
@@ -739,7 +966,6 @@ document.getElementById('musicBtn').onclick = (e)=>{
     btn.textContent = '🔊';
     btn.title = 'Անջատել երաժշտությունը';
     playBirthdayMelody();
-    // Loop the melody
     window.musicInterval = setInterval(playBirthdayMelody, 8000);
   }else{
     btn.classList.remove('playing');
@@ -757,7 +983,7 @@ document.getElementById('blowBtn').onclick = ()=>{
   if(blown){
     document.querySelectorAll('.flame').forEach(f=>f.style.display='block');
     blown=false;
-    document.getElementById('blowBtn').textContent='🌬️ փչիր Մոմերը';
+    document.getElementById('blowBtn').textContent='🌬️ Փչիր ոմերը';
     return;
   }
   document.querySelectorAll('.flame').forEach((f,i)=>{
